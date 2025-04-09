@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PickerLabelView: View {
+struct EMPickerLabelView: View {
     let title: String
     let backgroundColor: Color
     
@@ -28,5 +28,5 @@ struct PickerLabelView: View {
 
 
 #Preview {
-    PickerLabelView(title: "Picker Label", backgroundColor: .cyan)
+    EMPickerLabelView(title: "Picker Label", backgroundColor: .cyan)
 }

@@ -24,7 +24,7 @@ struct EMCardPicker: View {
                     .tag(card.id)
             }
         } label: {
-            PickerLabelView(title: selectedCard.bank.name, backgroundColor: backgroundColor)
+            EMPickerLabelView(title: selectedCard.bank.name, backgroundColor: backgroundColor)
         } currentValueLabel: {
             Text(selectedCard.bank.name)
         }
