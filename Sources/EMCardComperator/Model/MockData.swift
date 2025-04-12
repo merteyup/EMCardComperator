@@ -63,8 +63,8 @@ struct MockData {
                 size: .large,
                 website: "https://www.ziraatbank.com.tr"
             ),
-            yearlyUsageFee: 525,
-            isCheapest: false,
+            yearlyUsageFee: 125,
+            isCheapest: true,
             isForStudent: false,
             campaignMessages: []
         ),
@@ -75,8 +75,8 @@ struct MockData {
                 size: .large,
                 website: "https://www.qnbfinansbank.com"
             ),
-            yearlyUsageFee: 925,
-            isCheapest: false,
+            yearlyUsageFee: 0,
+            isCheapest: true,
             isForStudent: false,
             campaignMessages: [
                 "Restoran harcamalarında %20 indirim!"
@@ -102,7 +102,7 @@ struct MockData {
                 website: "https://www.fibabanka.com.tr"
             ),
             yearlyUsageFee: 425,
-            isCheapest: true,
+            isCheapest: false,
             isForStudent: true,
             campaignMessages: [
                 "İlk 3 ay %0 faizli alışveriş imkanı.",
