@@ -17,9 +17,13 @@ struct EMCompactLayoutView: View {
             EMLogoImage(imageName: selectedItem.bank.logoImageName)
             Spacer()
             VStack {
-                Text("Yıllık")
-                Text(selectedItem.formattedYearlyUsageFee)
-                    .foregroundStyle(selectedItem.isCheapest ? .green : .black)
+                if selectedItem.isCheapest {
+                    CheapestBadgeView(isFree: selectedItem.yearlyUsageFee == 0)
+                }
+
+                if selectedItem.yearlyUsageFee > 0 {
+                    YearlyFeeView(yearlyFeeText: selectedItem.formattedYearlyUsageFee)
+                }
             }
             Spacer()
             if let website = URL(string: selectedItem.bank.website) {
