@@ -43,8 +43,7 @@ public struct SelectItemView: View {
 
     public var body: some View {
         
-        EMCardPicker(selectedCard: selectedItem,
-                     selectedCardId: $selectedCardID,
+        EMCardPicker(selectedCardId: $selectedCardID,
                      backgroundColor: backgroundColor)
         .onChange(of: selectedCardID) { _, newCardID in
             guard mockCards.first(where: { $0.id == newCardID }) != nil else { return }
