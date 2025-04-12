@@ -21,7 +21,7 @@ struct EMExpandedLayoutView: View {
                 isAnimated: isAnimationActivated
             )
             .frame(minHeight: 100)
-            .padding()
+            .padding(.vertical, 8)
 
             EMPreApprovedLimitView(
                 limitText: "60.000TL",
