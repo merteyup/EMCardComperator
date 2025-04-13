@@ -18,7 +18,7 @@ struct EMCompactLayoutView: View {
             Spacer()
             VStack {
                 if selectedItem.isCheapest {
-                    CheapestBadgeView(isFree: selectedItem.yearlyUsageFee == 0)
+                    EMCheapestBadgeView(isFree: selectedItem.yearlyUsageFee == 0)
                 }
 
                 if selectedItem.yearlyUsageFee > 0 {
