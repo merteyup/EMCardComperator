@@ -2,11 +2,42 @@ import XCTest
 @testable import EMCardComperator
 
 final class EMCardComperatorTests: XCTestCase {
-    func testExample() throws {
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
+    
+    
+    func test_openAccountButtonTapped_shouldCallDelegateWithCorrectURL() throws {
+        
+        // Given
+        let sut = MockCardComperatorDelegate()
+        let viewModel = EMCardComperatorViewModel(delegate: sut)
+        let testURL = URL(string: "https://apple.com.tr")!
+        
+        // When
+        viewModel.openAccountButtonTapped(with: testURL)
+        
+        // Then
+        XCTAssertEqual(sut.receivedURL, testURL)
+    
+    }
+    
+    func test_DominantColorEnabled_ReturnsTrue() throws {
+        // Given
+        let sut = EMCardComperatorViewModel(delegate: MockCardComperatorDelegate())
+        
+        // When
+        let result = sut.isDominantColorActive
+        
+        // Then
+        XCTAssertEqual(result, true)
+    }
+}
 
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
+
+extension EMCardComperatorTests {
+    final class MockCardComperatorDelegate: EMCardComperatorDelegate {
+        var receivedURL: URL?
+        
+        func userDidTapOpenAccount(url: URL) {
+            receivedURL = url
+        }
     }
 }
