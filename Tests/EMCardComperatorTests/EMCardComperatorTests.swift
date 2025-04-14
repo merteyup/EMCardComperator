@@ -41,3 +41,17 @@ extension EMCardComperatorTests {
         }
     }
 }
+
+private extension EMCardComperatorTests {
+    func makeSUT(
+        delegate: EMCardComperatorDelegate? = MockCardComperatorDelegate(),
+        isCompactLayoutEnabled: Bool = false,
+        isDominantColorActive: Bool = false
+    ) -> EMCardComperatorViewModel {
+        return EMCardComperatorViewModel(
+            delegate: delegate,
+            isCompactLayoutEnabled: isCompactLayoutEnabled,
+            isDominantColorActive: isDominantColorActive
+        )
+    }
+}
