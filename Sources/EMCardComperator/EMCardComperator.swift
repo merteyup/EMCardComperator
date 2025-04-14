@@ -20,7 +20,6 @@ public struct SelectItemView: View {
 
     public init(viewModel: EMCardComperatorViewModel) {
         self._viewModel = ObservedObject(initialValue: viewModel)
-        let firstCardID = MockData.creditCards.first?.id ?? UUID()
         _backgroundColor = State(initialValue: viewModel.isDominantColorActive ? .red.opacity(0.6) : .clear)
     }
 
