@@ -17,11 +17,11 @@ public final class EMCardComperatorViewModel: ObservableObject {
 
 
     public init(delegate: EMCardComperatorDelegate? = nil,
-                selectedCardID: UUID,
+                selectedCardID: UUID? = nil,
                 isCompactLayoutEnabled: Bool = true,
                 isDominantColorActive: Bool = true) {
         self.delegate = delegate
-        self.selectedCardID = selectedCardID
+        self.selectedCardID = selectedCardID ?? MockData.creditCards.first?.id ?? UUID()
         self.isCompactLayoutEnabled = isCompactLayoutEnabled
         self.isDominantColorActive = isDominantColorActive
     }
