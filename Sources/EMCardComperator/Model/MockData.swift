@@ -5,10 +5,15 @@
 //  Created by Eyüp MERT on 4.04.2025.
 //
 
+import Foundation
 
 struct MockData {
+    
+    static let card1TestID = UUID(uuidString: "11111111-1111-1111-1111-111111111111")!
+    
     @MainActor static let creditCards: [CreditCard] = [
         CreditCard(
+            id: card1TestID,
             number: "4321 5678 2109 6543",
             bank: Bank(
                 name: "Akbank",
