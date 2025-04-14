@@ -4,7 +4,7 @@ import XCTest
 @MainActor
 final class EMCardComperatorTests: XCTestCase {
     
-    func test_openAccountButtonTapped_shouldCallDelegateWithCorrectURL() {
+    func test_OpenAccountButtonTapped_ShouldCallDelegateWithCorrectURL() {
         let mockDelegate = MockCardComperatorDelegate()
         let sut = makeSUT(delegate: mockDelegate)
         let testURL = URL(string: "https://apple.com.tr")!
