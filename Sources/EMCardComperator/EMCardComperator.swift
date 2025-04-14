@@ -13,23 +13,17 @@ public struct SelectItemView: View {
     @ObservedObject private var viewModel: EMCardComperatorViewModel
     
     private let mockCards = MockData.creditCards
-    var isDominantColorActive: Bool
-    var isCompactLayoutEnabled: Bool
 
     @State private var backgroundColor: Color = .red.opacity(0.6)
     @State private var selectedCardID: UUID
     @State private var isAnimationActivated = false
     
 
-    public init(viewModel: EMCardComperatorViewModel,
-                isDominantColorActive: Bool,
-                isCompactLayoutEnabled: Bool = false) {
+    public init(viewModel: EMCardComperatorViewModel) {
         self._viewModel = ObservedObject(initialValue: viewModel)
-        self.isDominantColorActive = isDominantColorActive
-        self.isCompactLayoutEnabled = isCompactLayoutEnabled
         let firstCardID = MockData.creditCards.first?.id ?? UUID()
         _selectedCardID = State(initialValue: firstCardID)
-        _backgroundColor = State(initialValue: isDominantColorActive ? .red.opacity(0.6) : .clear)
+        _backgroundColor = State(initialValue: viewModel.isDominantColorActive ? .red.opacity(0.6) : .clear)
     }
 
     
@@ -49,7 +43,7 @@ public struct SelectItemView: View {
             guard mockCards.first(where: { $0.id == newCardID }) != nil else { return }
             isAnimationActivated = false
             
-            if isDominantColorActive {
+            if viewModel.isDominantColorActive {
                 if let uiImage = ImageUtils.loadImage(named: selectedItem.bank.logoImageName) {
                     backgroundColor = ImageUtils.extractDominantColor(from: uiImage)
                 }
@@ -62,7 +56,7 @@ public struct SelectItemView: View {
             }
         }
         VStack {
-            if isCompactLayoutEnabled {
+            if viewModel.isCompactLayoutEnabled {
                 EMCompactLayoutView(selectedItem: selectedItem,
                                     viewModel: viewModel)
                 .padding()
@@ -95,7 +89,7 @@ final class PreviewDelegate: EMCardComperatorDelegate {
 
 #Preview {
     let previewViewModel = EMCardComperatorViewModel(delegate: PreviewDelegate())
-    SelectItemView(viewModel: previewViewModel, isDominantColorActive: false)
+    SelectItemView(viewModel: previewViewModel)
 }
 
 
