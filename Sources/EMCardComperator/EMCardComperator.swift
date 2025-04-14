@@ -15,20 +15,18 @@ public struct SelectItemView: View {
     private let mockCards = MockData.creditCards
 
     @State private var backgroundColor: Color = .red.opacity(0.6)
-    @State private var selectedCardID: UUID
     @State private var isAnimationActivated = false
     
 
     public init(viewModel: EMCardComperatorViewModel) {
         self._viewModel = ObservedObject(initialValue: viewModel)
         let firstCardID = MockData.creditCards.first?.id ?? UUID()
-        _selectedCardID = State(initialValue: firstCardID)
         _backgroundColor = State(initialValue: viewModel.isDominantColorActive ? .red.opacity(0.6) : .clear)
     }
 
     
     var selectedItem: CreditCard {
-        mockCards.first { $0.id == selectedCardID } ?? MockData.defaultCard
+        mockCards.first { $0.id == viewModel.selectedCardID } ?? MockData.defaultCard
     }
     
     private var selectedCardName: String {
@@ -37,9 +35,9 @@ public struct SelectItemView: View {
 
     public var body: some View {
         
-        EMCardPicker(selectedCardId: $selectedCardID,
+        EMCardPicker(selectedCardId: $viewModel.selectedCardID,
                      backgroundColor: backgroundColor)
-        .onChange(of: selectedCardID) { _, newCardID in
+        .onChange(of: viewModel.selectedCardID) { _, newCardID in
             guard mockCards.first(where: { $0.id == newCardID }) != nil else { return }
             isAnimationActivated = false
             
@@ -88,7 +86,8 @@ final class PreviewDelegate: EMCardComperatorDelegate {
 }
 
 #Preview {
-    let previewViewModel = EMCardComperatorViewModel(delegate: PreviewDelegate())
+    let previewViewModel = EMCardComperatorViewModel(delegate: PreviewDelegate(),
+                                                     selectedCardID: UUID())
     SelectItemView(viewModel: previewViewModel)
 }
 

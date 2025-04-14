@@ -38,7 +38,8 @@ struct EMCompactLayoutView: View {
 #Preview {
     EMCompactLayoutView(
         selectedItem: MockData.creditCards.first!,
-        viewModel: EMCardComperatorViewModel(delegate: PreviewDelegate())
+        viewModel: EMCardComperatorViewModel(delegate: PreviewDelegate(),
+                                             selectedCardID: UUID())
     )
 }
 

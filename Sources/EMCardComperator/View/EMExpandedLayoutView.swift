@@ -34,6 +34,6 @@ struct EMExpandedLayoutView: View {
 
 #Preview {
     EMExpandedLayoutView(selectedItem: MockData.creditCards.first!,
-                         viewModel: EMCardComperatorViewModel(delegate: PreviewDelegate()),
+                         viewModel: EMCardComperatorViewModel(delegate: PreviewDelegate(), selectedCardID: UUID()),
                          isAnimationActivated: true)
 }
