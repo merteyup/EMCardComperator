@@ -1,6 +1,7 @@
 import XCTest
 @testable import EMCardComperator
 
+@MainActor
 final class EMCardComperatorTests: XCTestCase {
     
     func test_openAccountButtonTapped_shouldCallDelegateWithCorrectURL() {
@@ -32,6 +33,15 @@ final class EMCardComperatorTests: XCTestCase {
         let sut = makeSUT(isCompactLayoutEnabled: false)
         XCTAssertFalse(sut.isCompactLayoutEnabled)
     }
+    
+    func test_SelectingCard_ShouldUpdateSelectedCardID() {
+        let expectedID = UUID()
+        let viewModel = makeSUT(selectedCardId: MockData.creditCards.first!.id)
+        
+        viewModel.selectedCardID = expectedID
+        
+        XCTAssertEqual(viewModel.selectedCardID, expectedID)
+    }
 }
 
 
@@ -45,14 +55,17 @@ extension EMCardComperatorTests {
     }
 }
 
+@MainActor
 private extension EMCardComperatorTests {
     func makeSUT(
         delegate: EMCardComperatorDelegate? = MockCardComperatorDelegate(),
+        selectedCardId: UUID = MockData.creditCards.first!.id,
         isCompactLayoutEnabled: Bool = false,
         isDominantColorActive: Bool = false
     ) -> EMCardComperatorViewModel {
         return EMCardComperatorViewModel(
             delegate: delegate,
+            selectedCardID: selectedCardId,
             isCompactLayoutEnabled: isCompactLayoutEnabled,
             isDominantColorActive: isDominantColorActive
         )
