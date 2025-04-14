@@ -3,31 +3,34 @@ import XCTest
 
 final class EMCardComperatorTests: XCTestCase {
     
-    
-    func test_openAccountButtonTapped_shouldCallDelegateWithCorrectURL() throws {
-        
-        // Given
-        let sut = MockCardComperatorDelegate()
-        let viewModel = EMCardComperatorViewModel(delegate: sut)
+    func test_openAccountButtonTapped_shouldCallDelegateWithCorrectURL() {
+        let mockDelegate = MockCardComperatorDelegate()
+        let sut = makeSUT(delegate: mockDelegate)
         let testURL = URL(string: "https://apple.com.tr")!
-        
-        // When
-        viewModel.openAccountButtonTapped(with: testURL)
-        
-        // Then
-        XCTAssertEqual(sut.receivedURL, testURL)
-    
+
+        sut.openAccountButtonTapped(with: testURL)
+
+        XCTAssertEqual(mockDelegate.receivedURL, testURL)
     }
     
-    func test_DominantColorEnabled_ReturnsTrue() throws {
-        // Given
-        let sut = EMCardComperatorViewModel(delegate: MockCardComperatorDelegate())
-        
-        // When
-        let result = sut.isDominantColorActive
-        
-        // Then
-        XCTAssertEqual(result, true)
+    func test_DominantColorEnabled_ReturnsTrue() {
+        let sut = makeSUT(isDominantColorActive: true)
+        XCTAssertTrue(sut.isDominantColorActive)
+    }
+
+    func test_DominantColorDisabled_ReturnsFalse() {
+        let sut = makeSUT(isDominantColorActive: false)
+        XCTAssertFalse(sut.isDominantColorActive)
+    }
+
+    func test_CompactLayoutEnabled_ReturnsTrue() {
+        let sut = makeSUT(isCompactLayoutEnabled: true)
+        XCTAssertTrue(sut.isCompactLayoutEnabled)
+    }
+
+    func test_CompactLayoutDisabled_ReturnsFalse() {
+        let sut = makeSUT(isCompactLayoutEnabled: false)
+        XCTAssertFalse(sut.isCompactLayoutEnabled)
     }
 }
 
