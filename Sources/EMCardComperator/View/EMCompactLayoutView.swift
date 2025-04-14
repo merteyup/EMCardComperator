@@ -27,7 +27,7 @@ struct EMCompactLayoutView: View {
             }
             Spacer()
             if let website = URL(string: selectedItem.bank.website) {
-                EMLinkButton(to: website, with: "Müşteri Ol") {
+                EMLinkButton(to: website, with: "Kart Al") {
                     viewModel.openAccountButtonTapped(with: website)
                 }
             }
