@@ -47,3 +47,10 @@ struct EMPreApprovedLimitView: View {
         )
     }
 }
+
+
+#Preview {
+    EMPreApprovedLimitView(limitText: "60.000",
+                           websiteURL: "www.apple.com.tr",
+                           viewModel: EMCardComperatorViewModel()).padding()
+}

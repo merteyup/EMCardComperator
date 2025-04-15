@@ -66,3 +66,12 @@ struct EMCampaignListView: View {
         .animation(.easeInOut(duration: isAnimated ? 0.5 : 0), value: isAnimated)
     }
 }
+
+
+#Preview {
+    EMCampaignListView(messages: [
+        "Yurt dışı harcamalarda %10 indirim fırsatı!",
+        "Axess’e özel tatil kampanyaları seni bekliyor.",
+        "Her 3 alışverişe 1 hediye kahve!"
+    ],isAnimated: true).padding()
+}

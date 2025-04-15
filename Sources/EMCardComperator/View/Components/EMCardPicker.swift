@@ -34,9 +34,10 @@ struct EMCardPicker: View {
 }
 
 #Preview {
-    @Previewable @State var selectedCardId: UUID = UUID()
-    return EMCardPicker(
-        selectedCardId: $selectedCardId,
-        backgroundColor: .blue
-    )
+    StatefulPreviewWrapper(UUID()) { id in
+        EMCardPicker(
+            selectedCardId: id,
+            backgroundColor: .red
+        ).padding()
+    }
 }

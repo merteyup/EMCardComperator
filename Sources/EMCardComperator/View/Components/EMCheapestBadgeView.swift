@@ -53,3 +53,8 @@ private extension View {
         self.modifier(BadgeTextStyle())
     }
 }
+
+
+#Preview {
+    EMCheapestBadgeView(isFree: false)
+}

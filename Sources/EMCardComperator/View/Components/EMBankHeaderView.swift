@@ -28,3 +28,7 @@ struct EMBankHeaderView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
+
+#Preview {
+    EMBankHeaderView(imageName: "wave.3.right").padding()
+}

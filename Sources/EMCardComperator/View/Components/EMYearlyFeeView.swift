@@ -23,3 +23,7 @@ struct YearlyFeeView: View {
             .clipShape(.capsule)
     }
 }
+
+#Preview {
+    YearlyFeeView(yearlyFeeText: String(215))
+}
