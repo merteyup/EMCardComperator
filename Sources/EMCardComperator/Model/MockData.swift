@@ -5,10 +5,15 @@
 //  Created by Eyüp MERT on 4.04.2025.
 //
 
+import Foundation
 
 struct MockData {
+    
+    static let card1TestID = UUID(uuidString: "11111111-1111-1111-1111-111111111111")!
+    
     @MainActor static let creditCards: [CreditCard] = [
         CreditCard(
+            id: card1TestID,
             number: "4321 5678 2109 6543",
             bank: Bank(
                 name: "Akbank",
@@ -63,8 +68,8 @@ struct MockData {
                 size: .large,
                 website: "https://www.ziraatbank.com.tr"
             ),
-            yearlyUsageFee: 525,
-            isCheapest: false,
+            yearlyUsageFee: 125,
+            isCheapest: true,
             isForStudent: false,
             campaignMessages: []
         ),
@@ -75,8 +80,8 @@ struct MockData {
                 size: .large,
                 website: "https://www.qnbfinansbank.com"
             ),
-            yearlyUsageFee: 925,
-            isCheapest: false,
+            yearlyUsageFee: 0,
+            isCheapest: true,
             isForStudent: false,
             campaignMessages: [
                 "Restoran harcamalarında %20 indirim!"
@@ -102,7 +107,7 @@ struct MockData {
                 website: "https://www.fibabanka.com.tr"
             ),
             yearlyUsageFee: 425,
-            isCheapest: true,
+            isCheapest: false,
             isForStudent: true,
             campaignMessages: [
                 "İlk 3 ay %0 faizli alışveriş imkanı.",

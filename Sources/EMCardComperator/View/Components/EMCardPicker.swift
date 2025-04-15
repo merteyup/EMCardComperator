@@ -9,11 +9,13 @@ import SwiftUI
 
 struct EMCardPicker: View {
     
-    @State var selectedCard: CreditCard
     @Binding var selectedCardId: UUID
     let mockCards = MockData.creditCards
     let backgroundColor: Color
     
+    var selectedCard: CreditCard {
+        mockCards.first(where: { $0.id == selectedCardId }) ?? mockCards[0]
+    }
     
     var body: some View {
         Picker(selection: $selectedCardId) {
@@ -32,21 +34,10 @@ struct EMCardPicker: View {
 }
 
 #Preview {
-    @Previewable @State var selectedCardId: UUID = UUID()
-    return EMCardPicker(
-        selectedCard: CreditCard(
-            number: "123456",
-            bank: Bank(
-                name: "Bank",
-                size: .medium,
-                website: "www.bank.com"
-            ),
-            yearlyUsageFee: 125.0,
-            isCheapest: false,
-            isForStudent: false,
-            campaignMessages: ["Campaign"]
-        ),
-        selectedCardId: $selectedCardId,
-        backgroundColor: .blue
-    )
+    StatefulPreviewWrapper(UUID()) { id in
+        EMCardPicker(
+            selectedCardId: id,
+            backgroundColor: .red
+        ).padding()
+    }
 }

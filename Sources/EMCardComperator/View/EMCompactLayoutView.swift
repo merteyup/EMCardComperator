@@ -17,13 +17,17 @@ struct EMCompactLayoutView: View {
             EMLogoImage(imageName: selectedItem.bank.logoImageName)
             Spacer()
             VStack {
-                Text("Yıllık")
-                Text(selectedItem.formattedYearlyUsageFee)
-                    .foregroundStyle(selectedItem.isCheapest ? .green : .black)
+                if selectedItem.isCheapest {
+                    EMCheapestBadgeView(isFree: selectedItem.yearlyUsageFee == 0)
+                }
+
+                if selectedItem.yearlyUsageFee > 0 {
+                    YearlyFeeView(yearlyFeeText: selectedItem.formattedYearlyUsageFee)
+                }
             }
             Spacer()
             if let website = URL(string: selectedItem.bank.website) {
-                EMLinkButton(to: website, with: "Müşteri Ol") {
+                EMLinkButton(to: website, with: "Kart Al") {
                     viewModel.openAccountButtonTapped(with: website)
                 }
             }
@@ -34,7 +38,8 @@ struct EMCompactLayoutView: View {
 #Preview {
     EMCompactLayoutView(
         selectedItem: MockData.creditCards.first!,
-        viewModel: EMCardComperatorViewModel(delegate: PreviewDelegate())
-    )
+        viewModel: EMCardComperatorViewModel(delegate: PreviewDelegate(),
+                                             selectedCardID: UUID())
+    ).padding()
 }
 

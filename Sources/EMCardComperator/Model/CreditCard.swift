@@ -8,7 +8,7 @@ import SwiftUI
 
 @Observable
 class CreditCard: Codable, Identifiable, Equatable {
-    var id: UUID = UUID()
+    public var id: UUID = UUID()
     var number: String
     var bank: Bank
     var yearlyUsageFee: Decimal
@@ -17,6 +17,7 @@ class CreditCard: Codable, Identifiable, Equatable {
     let campaignMessages: [String]
 
     init(
+        id: UUID = UUID(),
         number: String,
         bank: Bank,
         yearlyUsageFee: Decimal,
@@ -24,6 +25,7 @@ class CreditCard: Codable, Identifiable, Equatable {
         isForStudent: Bool,
         campaignMessages: [String]
     ) {
+        self.id = id
         self.number = number
         self.bank = bank
         self.yearlyUsageFee = yearlyUsageFee

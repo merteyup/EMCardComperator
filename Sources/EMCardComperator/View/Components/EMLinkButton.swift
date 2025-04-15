@@ -24,8 +24,9 @@ public struct EMLinkButton: View {
             UIApplication.shared.open(url)
         } label: {
             Text(title)
+                .font(.subheadline)
                 .padding(10)
-                .background(.blue)
+                .background(.green)
                 .foregroundStyle(.white)
                 .clipShape(.buttonBorder)
         }
