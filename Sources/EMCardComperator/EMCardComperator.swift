@@ -14,13 +14,13 @@ public struct SelectItemView: View {
     
     private let mockCards = MockData.creditCards
 
-    @State private var backgroundColor: Color = .red.opacity(0.6)
+    @State private var backgroundColor: Color = .red.opacity(0.3)
     @State private var isAnimationActivated = false
     
 
     public init(viewModel: EMCardComperatorViewModel) {
         self._viewModel = ObservedObject(initialValue: viewModel)
-        _backgroundColor = State(initialValue: viewModel.isDominantColorActive ? .red.opacity(0.6) : .clear)
+        _backgroundColor = State(initialValue: viewModel.isDominantColorActive ? .red.opacity(0.3) : .clear)
     }
 
     
@@ -42,7 +42,7 @@ public struct SelectItemView: View {
             
             if viewModel.isDominantColorActive {
                 if let uiImage = ImageUtils.loadImage(named: selectedItem.bank.logoImageName) {
-                    backgroundColor = ImageUtils.extractDominantColor(from: uiImage)
+                    backgroundColor = ImageUtils.extractDominantColor(from: uiImage).opacity(0.3)
                 }
             } else {
                 backgroundColor = .clear

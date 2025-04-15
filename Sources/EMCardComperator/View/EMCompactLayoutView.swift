@@ -40,6 +40,6 @@ struct EMCompactLayoutView: View {
         selectedItem: MockData.creditCards.first!,
         viewModel: EMCardComperatorViewModel(delegate: PreviewDelegate(),
                                              selectedCardID: UUID())
-    )
+    ).padding()
 }
 
