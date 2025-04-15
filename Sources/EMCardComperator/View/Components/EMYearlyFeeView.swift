@@ -16,11 +16,10 @@ struct YearlyFeeView: View {
             Text(yearlyFeeText)
                 .foregroundStyle(.primary)
                 .shadow(color: .white.opacity(0.2), radius: 1, x: 0, y: 1)
-        }.padding(.vertical, 4)
-            .padding(.horizontal, 6)
-            .background(.white)
-            .foregroundStyle(.primary)
-            .clipShape(.capsule)
+        }
+        .padding(.vertical, 4)
+        .padding(.horizontal, 6)
+        .roundedBorder(borderColor: .green.opacity(0.3))
     }
 }
 
