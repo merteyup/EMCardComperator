@@ -35,14 +35,28 @@ Here’s a simple example to get you started:
 import SwiftUI
 import EMCardComperator
 
+final class ContainerViewModel: ObservableObject, EMCardComperatorDelegate {
+    func userDidTapOpenAccount(url: URL) {
+        print("🔗 Container App received link 🔗: \(url)")
+
+    }
+}
+
 struct ContentView: View {
-    
-    @ObservedObject private var viewModel: EMCardComperatorViewModel
-    
+    @StateObject private var delegateVM = ContainerViewModel()
+    @StateObject private var sdkViewModel: EMCardComperatorViewModel
+
+    init() {
+        let delegate = ContainerViewModel()
+        _delegateVM = StateObject(wrappedValue: delegate)
+        _sdkViewModel = StateObject(wrappedValue: EMCardComperatorViewModel(delegate: delegate,
+                                                                            isCompactLayoutEnabled: true,
+                                                                            isDominantColorActive: true))
+    }
+
     var body: some View {
-        SelectItemView(viewModel: viewModel, 
-                       isDominantColorActive: true, 
-                       isCompactLayoutEnabled: false)
+        SelectItemView(viewModel: sdkViewModel)
+            .padding()
     }
 }
 
