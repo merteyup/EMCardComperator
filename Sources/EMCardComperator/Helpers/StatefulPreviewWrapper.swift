@@ -1,3 +1,12 @@
+//
+//  StatefulPreviewWrapper.swift
+//  EMCardComperator
+//
+//  Created by Eyüp MERT on 15.04.2025.
+//
+
+import SwiftUI
+
 struct StatefulPreviewWrapper<Value: Equatable, Content: View>: View {
     @State private var value: Value
     var content: (Binding<Value>) -> Content
